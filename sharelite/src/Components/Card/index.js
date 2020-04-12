@@ -51,8 +51,7 @@ export const Card = props => {
     }
   }
   return (
-    <Link to="/feed">
-    <SUICard>
+    <SUICard href="/feed">
       <Image src={imageUrl} wrapped ui={false} />
       <SUICard.Content>
         <SUICard.Meta style={{ marginBottom: "10px" }}>
@@ -78,6 +77,5 @@ export const Card = props => {
         </SUICard.Description>
       </SUICard.Content>
     </SUICard>
-    </Link>
   );
 };
