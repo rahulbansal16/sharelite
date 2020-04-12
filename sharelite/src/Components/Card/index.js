@@ -2,6 +2,7 @@ import { Card as SUICard, Image, Icon, Button } from "semantic-ui-react";
 import React, { useState } from "react";
 import moment from "moment";
 import _ from "underscore";
+import { Link } from "react-router-dom"
 export const Card = props => {
   const {
     imageUrl,
@@ -50,7 +51,8 @@ export const Card = props => {
     }
   }
   return (
-    <SUICard href="#card-example-link-card">
+    <Link to="/feed">
+    <SUICard>
       <Image src={imageUrl} wrapped ui={false} />
       <SUICard.Content>
         <SUICard.Meta style={{ marginBottom: "10px" }}>
@@ -76,5 +78,6 @@ export const Card = props => {
         </SUICard.Description>
       </SUICard.Content>
     </SUICard>
+    </Link>
   );
 };
