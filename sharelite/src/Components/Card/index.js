@@ -1,26 +1,26 @@
-import { Card } from "semantic-ui-react";
-import { React } from "react";
+import { Card as SUICard, Image, Icon} from "semantic-ui-react";
+import React from "react";
 
 export const Card = (props) => {
   const {imageURL, title, description, startTime, joinURL, isLive} = props
   return (
-    <Card>
+    <SUICard>
       <Image src={imageURL} wrapped ui={false} />
-      <Card.Content>
-        <Card.Meta>
+      <SUICard.Content>
+        <SUICard.Meta>
           <span className="date">{startTime}</span>
-        </Card.Meta>
-        <Card.Header>{title}</Card.Header>
-        <Card.Description>
+        </SUICard.Meta>
+        <SUICard.Header>{title}</SUICard.Header>
+        <SUICard.Description>
           {description}
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
+        </SUICard.Description>
+      </SUICard.Content>
+      <SUICard.Content extra>
         <a>
           <Icon name="user" />
           22 Friends
         </a>
-      </Card.Content>
-    </Card>
+      </SUICard.Content>
+    </SUICard>
   );
 }
