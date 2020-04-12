@@ -24,23 +24,34 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.tags {
+  display: inline;
+  background-color:#201aa220;
+  color: #201aa2dd;
+  padding:4px 8px;
+  border-radius: 7px;
+  margin-right: 4px;
+  margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.link {
+  width: 30rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-self: center;
 }
-
 
 .ytplayer {
     pointer-events: none;
 }
 .ytp-title {
   display: none;
+}
+.link a {
+  text-transform: uppercase;
+  word-wrap: break-word;
+  font-weight: 900;
+  text-decoration: none;
+  color: #007bff;
+  background: #007bff10;
 }
