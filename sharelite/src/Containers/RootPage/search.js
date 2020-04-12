@@ -48,7 +48,6 @@ export class SearchBox extends Component {
             results={results}
             value={value}
             {...this.props}
-            
           />
         </Grid.Column>
       </Grid>
