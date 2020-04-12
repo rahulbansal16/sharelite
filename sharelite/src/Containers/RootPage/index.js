@@ -25,12 +25,7 @@ export function RootPage() {
       <Menu fixed="top" size="large" inverted style={{ height: "80px" }}>
         <Container>
           <Menu.Item as="a" header>
-            <Image
-              size="mini"
-              src="/logo.png"
-              style={{ marginRight: "1.5em" }}
-            />
-            Professional Meetup
+            Tumbaad
           </Menu.Item>
           <SearchBox />
         </Container>
