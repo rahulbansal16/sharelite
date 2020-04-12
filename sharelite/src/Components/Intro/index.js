@@ -5,9 +5,14 @@ import {Embed,Button, Card} from 'semantic-ui-react';
 
 export class Intro extends React.Component{
 
+    
+    navigateToPost = (id) => {
+        console.log("Hoping to navigate to the id", id);
+    }
+
     getIntro = (intro) => {
         return (
-            <Card fluid>
+            <Card fluid link onClick={() => this.navigateToPost(intro.id)}>
                 <Card.Content>
                     <Card.Header>
                         {intro.heading}
@@ -16,11 +21,11 @@ export class Intro extends React.Component{
         <Card.Description style={{color:'#343a40'}}>{intro.question}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                        <div style = { {display:'flex', flexDirection:'row'} }>
+                        {/* <div style = { {display:'flex', flexDirection:'row'} }>
                         {intro.tags.map((element, index) => {
                         return this.createTags(element,index);
                         })}
-                        </div>
+                        </div> */}
                             <div className="link" style={{marginLeft:'4px'}}>
                                 <a  href={intro.linkedin}>linkedin</a>
                             </div>          
@@ -41,7 +46,7 @@ export class Intro extends React.Component{
     renderIntros = (introDataList) => {
         return (
             <div>
-               <Card.Group>
+               <Card.Group style = {{marginTop:'10px'}}>
                    {introDataList.map(  introData => this.getIntro(introData))}
                 </Card.Group> 
             </div>

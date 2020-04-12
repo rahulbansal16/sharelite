@@ -5,8 +5,9 @@ import {Intro} from './../../Components/Intro';
 import { IntroButton } from '../../Components/IntroButton';
 
 
-const introJson = [
+let introJson = [
         {
+            id:23,
             heading:'Marketing',
             exp:'< 1',
             college:'IIM Rohtak',
@@ -36,6 +37,20 @@ const introJson = [
 ];
 export class FeedPage extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {data: introJson}
+        
+    }
+
+    saveIntro = (info) => {
+        console.log("Data for the FeedPage is", info);
+        if ( info.heading && info.question && info.linkedin){
+            introJson.push(info);
+            this.setState({data:introJson})
+        }
+    }
+
     render(){
         return (
             <>
@@ -51,8 +66,8 @@ export class FeedPage extends React.Component {
                         </Grid.Column>
                         <Grid.Column>
                             <div style = {{alignItems:'rights'}}>
-                                <IntroButton style={{display:'inline'}}/>
-                                <Intro data={introJson} style={{display:'inline'}}/>
+                                <IntroButton style={{display:'inline'}} saveIntro = {this.saveIntro}/>
+                                <Intro data={this.state.data} style={{display:'inline'}}/>
                             </div>
                         </Grid.Column>
                     </Grid.Row>
