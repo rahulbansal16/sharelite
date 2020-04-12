@@ -45,10 +45,8 @@ export class FeedPage extends React.Component {
 
     saveIntro = (info) => {
         console.log("Data for the FeedPage is", info);
-        if ( info.heading && info.question && info.linkedin){
-            introJson.push(info);
-            this.setState({data:introJson})
-        }
+        introJson.push(info);
+        this.setState({data:introJson})
     }
 
     render(){
