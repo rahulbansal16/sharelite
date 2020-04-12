@@ -2,10 +2,10 @@ import { Card as SUICard, Image, Icon} from "semantic-ui-react";
 import React from "react";
 
 export const Card = (props) => {
-  const {imageURL, title, description, startTime, joinURL, isLive} = props
+  const {imageUrl, title, description, startTime, joinURL, isLive} = props
   return (
     <SUICard>
-      <Image src={imageURL} wrapped ui={false} />
+      <Image src={imageUrl} wrapped ui={false} />
       <SUICard.Content>
         <SUICard.Meta>
           <span className="date">{startTime}</span>
