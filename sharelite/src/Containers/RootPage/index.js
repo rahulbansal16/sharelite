@@ -1,85 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "./../../Components/Card";
-import { Container, Card as SUICard, Menu, Image } from "semantic-ui-react";
-import {SearchBox} from "./search"
-let meetups = [
-  {
-    id: 1,
-    imageUrl:
-      "https://i.ytimg.com/vi/QnZHO7QvjaM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDpYsMiOU_YFPy2oHNHmCx_BzpDFQ",
-    videoUrl:
-      "https://youtu.be/QnZHO7QvjaM?list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh",
-    title: "Test Meeting",
-    description: "Test description",
-    startTime: "1586682114444",
-    isLive: true,
-    joinURL: "google.com"
-  },
-  {
-    id: 1,
-    imageUrl:
-      "https://i.ytimg.com/vi/QnZHO7QvjaM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDpYsMiOU_YFPy2oHNHmCx_BzpDFQ",
-    videoUrl:
-      "https://youtu.be/QnZHO7QvjaM?list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh",
-    title: "Test Meeting",
-    description: "Test description",
-    startTime: "1586682114444",
-    isLive: true,
-    joinURL: "google.com"
-  },
-  {
-    id: 1,
-    imageUrl:
-      "https://i.ytimg.com/vi/QnZHO7QvjaM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDpYsMiOU_YFPy2oHNHmCx_BzpDFQ",
-    videoUrl:
-      "https://youtu.be/QnZHO7QvjaM?list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh",
-    title: "Test Meeting",
-    description: "Test description",
-    startTime: "1586682114444",
-    isLive: true,
-    joinURL: "google.com"
-  },
-  {
-    id: 1,
-    imageUrl:
-      "https://i.ytimg.com/vi/QnZHO7QvjaM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDpYsMiOU_YFPy2oHNHmCx_BzpDFQ",
-    videoUrl:
-      "https://youtu.be/QnZHO7QvjaM?list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh",
-    title: "Test Meeting",
-    description: "Test description",
-    startTime: "1586682114444",
-    isLive: true,
-    joinURL: "google.com"
-  },
-  {
-    id: 1,
-    imageUrl:
-      "https://i.ytimg.com/vi/QnZHO7QvjaM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDpYsMiOU_YFPy2oHNHmCx_BzpDFQ",
-    videoUrl:
-      "https://youtu.be/QnZHO7QvjaM?list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh",
-    title: "Test Meeting",
-    description: "Test description",
-    startTime: "1586682114444",
-    isLive: true,
-    joinURL: "google.com"
-  },
-  {
-    id: 1,
-    imageUrl:
-      "https://i.ytimg.com/vi/QnZHO7QvjaM/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDpYsMiOU_YFPy2oHNHmCx_BzpDFQ",
-    videoUrl:
-      "https://youtu.be/QnZHO7QvjaM?list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh",
-    title: "Test Meeting",
-    description: "Test description",
-    startTime: "1586682114444",
-    isLive: true,
-    joinURL: "google.com"
-  }
-];
+import {
+  Container,
+  Card as SUICard,
+  Menu,
+  Image,
+  Header
+} from "semantic-ui-react";
+import { SearchBox } from "./search";
+import { meetups } from "./data";
 export function RootPage() {
+  const [meetupData, updateMeetupData] = useState(meetups);
+
+  const handleRegister = (categoryIdx, itemIdx) => {
+      console.log(categoryIdx, itemIdx)
+    let meetingObj = Object.assign([]  , meetupData);
+    meetingObj[categoryIdx]['data'][itemIdx]["hasRegistered"] = true;
+    meetingObj[categoryIdx]['data'][itemIdx]["members"] =
+      meetingObj[categoryIdx]['data'][itemIdx]["members"] + 1;
+    updateMeetupData(meetingObj);
+  };
   return (
     <>
-      <Menu fixed="top" size="large" inverted style={{height: '80px'}}>
+      <Menu fixed="top" size="large" inverted style={{ height: "80px" }}>
         <Container>
           <Menu.Item as="a" header>
             <Image
@@ -94,11 +37,24 @@ export function RootPage() {
       </Menu>
 
       <Container style={{ marginTop: "7em" }}>
-        <SUICard.Group itemsPerRow={4}>
-          {meetups.map(meetup => {
-            return <Card key={meetup.id} {...meetup} />;
-          })}
-        </SUICard.Group>
+        {meetupData.map((item, categoryIdx) => (
+          <div key={categoryIdx}>
+            <Header dividing>{item.name}</Header>
+            <SUICard.Group itemsPerRow={4}>
+              {item.data.map((meetup, itemIdx) => (
+                <Card
+                  key={itemIdx}
+                  handleRegister={handleRegister.bind(
+                    this,
+                    categoryIdx,
+                    itemIdx
+                  )}
+                  {...meetup}
+                />
+              ))}
+            </SUICard.Group>
+          </div>
+        ))}
       </Container>
     </>
   );
